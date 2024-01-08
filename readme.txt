@@ -43,3 +43,21 @@ git branch -d feature/1-add-cart
 git push origin -d feature/1-add-cart
 
 hehe
+
+ ~/De/r/QuanLyDeTaiKhoaHoc  feature/30-update-main +1 ▓▒░ git config --global user.name 'Linh Huynh'                 
+ ~/De/r/QuanLyDeTaiKhoaHoc  feature/30-update-main +1 ▓▒░ git config --global user.email 'huynhdanglinh1988@gmail.com' 
+ ~/De/r/QuanLyDeTaiKhoaHoc  feature/30-update-main +1 ▓▒░ git config user.name
+Linh Huynh
+ ~/De/r/QuanLyDeTaiKhoaHoc  feature/30-update-main +1 ▓▒░ git config user.email
+huynhdanglinh1988@gmail.com
+ ~/De/r/QuanLyDeTaiKhoaHoc  feature/30-update-main +1 ▓▒░ git status    ░▒▓ ✔ 
+On branch feature/30-update-main
+Your branch is up to date with 'origin/feature/30-update-main'.
+
+Changes to be committed:
+  (use "git restore --staged <file>..." to unstage)
+	modified:   BT.QuanLyDeTai - form Main va Login/QuanLyDeTai/Main.cs
+
+ ~/De/r/QuanLyDeTaiKhoaHoc  feature/30-update-main +1 ▓▒░ git commit -m '#30 - Kien update form main'
+[feature/30-update-main 1c8fed2] #30 - Kien update form main
+ 1 file changed, 1 insertion(+)
