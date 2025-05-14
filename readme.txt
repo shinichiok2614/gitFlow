@@ -71,3 +71,70 @@ Changes to be committed:
  ~/De/r/QuanLyDeTaiKhoaHoc  feature/30-update-main +1 ▓▒░ git commit -m '#30 - Kien update form main'
 [feature/30-update-main 1c8fed2] #30 - Kien update form main
  1 file changed, 1 insertion(+)
+
+--
+Nếu bạn vừa mới code sai và muốn quay lại thời điểm code còn đúng trước đó, bạn có thể làm theo 1 trong 3 cách sau tùy tình huống, đảm bảo an toàn và không mất code trừ khi bạn muốn xoá.
+
+📌 Trường hợp 1: Bạn chưa commit (chỉ mới chỉnh sửa file)
+👉 Dùng lệnh sau để hoàn tác tất cả thay đổi và quay về trạng thái commit gần nhất:
+
+bash
+Copy
+Edit
+git restore .
+Hoặc để chỉ hoàn tác 1 file:
+
+bash
+Copy
+Edit
+git restore path/to/file.js
+🔴 Lưu ý: Mất toàn bộ thay đổi chưa lưu commit. Nếu muốn backup, nên copy thư mục trước.
+
+📌 Trường hợp 2: Bạn đã commit nhưng muốn quay lại commit trước đó
+➤ Giữ lại thay đổi để chỉnh sửa lại:
+bash
+Copy
+Edit
+git reset --soft HEAD~1
+Quay lại commit trước nhưng giữ code trong staged.
+
+➤ Hoặc quay lại commit trước đó và giữ code nhưng không staged:
+bash
+Copy
+Edit
+git reset --mixed HEAD~1
+➤ Nếu bạn chắc chắn muốn xoá toàn bộ thay đổi:
+bash
+Copy
+Edit
+git reset --hard HEAD~1
+⚠️ Dùng --hard sẽ xoá sạch mọi thay đổi kể từ commit đó — không thể khôi phục lại nếu không backup.
+
+📌 Trường hợp 3: Bạn biết commit đúng là commit nào trong git log
+Xem danh sách commit:
+
+bash
+Copy
+Edit
+git log --oneline
+Ví dụ:
+
+pgsql
+Copy
+Edit
+a1b2c3d Fix login issue
+9f8e7g6 Add new feature (code sai)
+Quay lại commit đúng (ví dụ a1b2c3d):
+
+bash
+Copy
+Edit
+git reset --hard a1b2c3d
+✅ Nếu muốn khôi phục code nhưng không thay đổi lịch sử:
+Tạo 1 nhánh mới từ commit đúng:
+
+bash
+Copy
+Edit
+git checkout -b recovery a1b2c3d
+--
