@@ -1,3 +1,13 @@
+--
+public key
+git status
+git init
+git add .
+git commit -m "first commit"
+git remote add origin git@github.com:shinichiok2614/projectMovie.git
+git push 
+git push --set-upstream origin master
+--
 hello world
 issue
     Tuan - add file cart.model.js #1
