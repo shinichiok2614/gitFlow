@@ -8,6 +8,19 @@ git remote add origin git@github.com:shinichiok2614/projectMovie.git
 git push 
 git push --set-upstream origin master
 --
+Để tạo nhánh develop từ master, sau đó tạo nhánh feature/1-home từ develop trong Git, bạn thực hiện lần lượt các lệnh sau:
+
+✅ Bước 1: Tạo nhánh develop từ master
+git checkout master         # Đảm bảo đang ở nhánh master
+git pull origin master      # Cập nhật mới nhất từ remote
+git checkout -b develop     # Tạo và chuyển sang nhánh develop
+git push -u origin develop  # Đẩy nhánh develop lên remote và thiết lập theo dõi
+✅ Bước 2: Tạo nhánh feature/1-home từ develop
+git checkout develop                # Đảm bảo đang ở develop
+git pull origin develop             # Cập nhật mới nhất
+git checkout -b feature/1-home      # Tạo và chuyển sang nhánh mới
+git push -u origin feature/1-home   # Đẩy nhánh lên remote và theo dõi
+--
 hello world
 issue
     Tuan - add file cart.model.js #1
@@ -17,7 +30,7 @@ git branch
 git checkout develop
 git push -u origin develop //cập nhật branch develop lên remote
 
-git branch feature/1-add-file-cart
+//git branch feature/1-add-file-cart
 git checkout -b feature/1-add-file-cart develop   //tách nhánh trên nhánh develop
 git add cart.model.js 
 git commit -m '#1 - Tuan add file cart'  
