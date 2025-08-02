@@ -132,3 +132,142 @@ Tạo 1 nhánh mới từ commit đúng:
 
 git checkout -b recovery a1b2c3d
 --
+ở dưới local cần cập nhật 3 file đã commit mà lên remote đã chỉnh 1 file readme, giờ làm sao local push
+
+
+ChatGPT đã nói:
+Bạn đang gặp tình huống:
+
+✅ Trên local: Đã commit 3 file mới (chưa push)
+
+✅ Trên remote (GitHub): Đã chỉnh 1 file (README chẳng hạn)
+
+❌ Bạn không push được vì Git báo lỗi do remote đã thay đổi
+
+✅ Giải pháp: Kéo (pull) thay đổi từ remote trước, sau đó push lại
+🔧 Cách làm từng bước trong Android Studio:
+✅ Bước 1: Fetch và Merge
+Vào menu: VCS > Git > Pull
+
+Chọn Pull → Git sẽ tải thay đổi từ GitHub (file README đã sửa) và merge với commit local của bạn.
+
+Nếu không có xung đột, bạn sẽ merge thành công.
+
+✅ Bước 2: Push
+Sau khi pull xong, bạn có thể bấm Push như bình thường:
+VCS > Git > Push
+
+🧨 Trường hợp có xung đột (conflict)?
+Nếu xảy ra conflict (mâu thuẫn) khi merge file (ví dụ cùng sửa README):
+
+Android Studio sẽ hiện thông báo conflicted files
+
+Bạn có thể:
+
+Chọn Accept Yours (dùng bản local)
+
+Chọn Accept Theirs (dùng bản GitHub)
+
+Hoặc Merge manually
+
+Sau khi xử lý conflict:
+
+bash
+Sao chép
+Chỉnh sửa
+git add .
+git commit   # Hoặc Android Studio sẽ giúp bạn commit "Merge"
+git push
+🔁 Cách làm tương đương trên terminal:
+bash
+Sao chép
+Chỉnh sửa
+git pull origin main   # Kéo thay đổi trên remote về
+# (resolve conflict nếu có)
+git push origin main   # Push sau khi merge
+Nếu bạn không muốn merge mà muốn ghi đè remote bằng local, thì cần dùng --force, nhưng KHÔNG KHUYẾN KHÍCH nếu đã có ai khác làm việc trên repo.
+
+Bạn gặp lỗi cụ thể gì khi push? Nếu bạn dán nội dung lỗi mình sẽ giúp xử lý chính xác hơn.
+
+
+
+
+
+
+
+
+Bạn đã nói:
+➜  androidCutVideo git:(main) ✗ git pull origin main
+From github.com:shinichiok2614/androidCutVideo
+ * branch            main       -> FETCH_HEAD
+hint: You have divergent branches and need to specify how to reconcile them.
+hint: You can do so by running one of the following commands sometime before
+hint: your next pull:
+hint:
+hint:   git config pull.rebase false  # merge
+hint:   git config pull.rebase true   # rebase
+hint:   git config pull.ff only       # fast-forward only
+hint:
+hint: You can replace "git config" with "git config --global" to set a default
+hint: preference for all repositories. You can also pass --rebase, --no-rebase,
+hint: or --ff-only on the command line to override the configured default per
+hint: invocation.
+fatal: Need to specify how to reconcile divergent branches.
+➜  androidCutVideo git:(main) ✗ 
+
+
+ChatGPT đã nói:
+Bạn đang gặp lỗi này:
+
+bash
+Sao chép
+Chỉnh sửa
+fatal: Need to specify how to reconcile divergent branches.
+🔍 Lý do: Vì local và remote đều có commit riêng biệt, Git không biết bạn muốn merge, rebase, hay chỉ chấp nhận fast-forward.
+
+✅ Cách xử lý đơn giản: Dùng merge để kéo về
+Bạn chạy lệnh sau:
+
+bash
+Sao chép
+Chỉnh sửa
+git pull origin main --no-rebase
+Hoặc:
+
+bash
+Sao chép
+Chỉnh sửa
+git pull origin main --rebase
+📌 Giải thích:
+Cách kéo	Ý nghĩa
+--no-rebase	Tạo một merge commit, giữ nguyên lịch sử local và remote
+--rebase	Dời commit local lên sau commit remote để lịch sử gọn hơn
+--ff-only	Chỉ kéo nếu không có commit local, nếu có sẽ báo lỗi
+
+🛠️ Gợi ý cấu hình mặc định để khỏi bị hỏi lần sau:
+Nếu bạn muốn Git luôn merge khi pull, chạy lệnh:
+
+bash
+Sao chép
+Chỉnh sửa
+git config pull.rebase false
+Hoặc nếu bạn thích rebase hơn:
+
+bash
+Sao chép
+Chỉnh sửa
+git config pull.rebase true
+Thêm --global nếu bạn muốn áp dụng cho mọi repo:
+
+bash
+Sao chép
+Chỉnh sửa
+git config --global pull.rebase false
+✅ Sau khi pull xong
+bash
+Sao chép
+Chỉnh sửa
+git push origin main
+Bạn sẽ push được như bình thường.
+
+Nếu cần mình giải thích rõ hơn sự khác biệt giữa merge và rebase, cứ hỏi nhé!
